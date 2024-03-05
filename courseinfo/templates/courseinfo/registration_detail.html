@@ -1,0 +1,25 @@
+{% extends 'courseinfo/base.html' %}
+
+{% block title %}
+    Registration - {{ registration.student }} for {{ registration.section }}
+{% endblock %}
+
+{% block content %}
+    <h2>Registration Details</h2>
+
+    <section>
+        <h3>Student Information</h3>
+        <p>{{ registration.student.first_name }} {{ registration.student.last_name }}</p>
+        {% if registration.student.disambiguator %}
+            <p>Disambiguator: {{ registration.student.disambiguator }}</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h3>Section Information</h3>
+        <p>{{ registration.section }}</p>
+        <p>Course: {{ registration.section.course }}</p>
+        <p>Semester: {{ registration.section.semester }}</p>
+        <p>Instructor: {{ registration.section.instructor }}</p>
+    </section>
+{% endblock %}
