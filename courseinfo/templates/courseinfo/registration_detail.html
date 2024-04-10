@@ -1,25 +1,33 @@
 {% extends 'courseinfo/base.html' %}
 
 {% block title %}
-    Registration - {{ registration.student }} for {{ registration.section }}
+    Registration - {{ registration }}
 {% endblock %}
 
 {% block content %}
-    <h2>Registration Details</h2>
+    <h2>{{ registration }}</h2>
+    <ul class="ezu-button-list">
+        <li>
+          <a href="{{ registration.get_update_url }}"
+             class="button button-primary">
+            Edit Registration</a></li>
+        <li>
+          <a href="{{ registration.get_delete_url }}"
+             class="button button-primary">
+            Delete Registration</a></li>
+    </ul>
 
     <section>
-        <h3>Student Information</h3>
-        <p>{{ registration.student.first_name }} {{ registration.student.last_name }}</p>
-        {% if registration.student.disambiguator %}
-            <p>Disambiguator: {{ registration.student.disambiguator }}</p>
-        {% endif %}
+        <table>
+            <tr>
+                <th>Student:</th>
+                <td><a href="{{ student.get_absolute_url }}">{{ student }}</a></td>
+            </tr>
+            <tr>
+                <th>Section:</th>
+                <td><a href="{{ section.get_absolute_url }}">{{ section }}</a></td>
+            </tr>
+        </table>
     </section>
 
-    <section>
-        <h3>Section Information</h3>
-        <p>{{ registration.section }}</p>
-        <p>Course: {{ registration.section.course }}</p>
-        <p>Semester: {{ registration.section.semester }}</p>
-        <p>Instructor: {{ registration.section.instructor }}</p>
-    </section>
 {% endblock %}
