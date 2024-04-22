@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 from django.conf.global_settings import STATIC_ROOT
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'khan_amaan_ezu.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / '../db.sqlite3',
     }
 }
 
@@ -119,9 +120,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
+LOGIN_REDIRECT_URL = 'about_urlpattern'
+LOGOUT_REDIRECT_URL = 'login_urlpattern'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = reverse_lazy('login_urlpattern')
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
